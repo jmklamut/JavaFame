@@ -1,4 +1,6 @@
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
@@ -6,12 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.geometry.Insets;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.stage.*;
@@ -46,9 +50,21 @@ public class Safe extends Pane{
         setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                PasswordField passwordField = new PasswordField();
-                passwordField.setPromptText("Your password");
+                final Label message = new Label("");
 
+                PasswordField passwordField = new PasswordField();
+                passwordField.setPromptText("Enter Code Here");
+                getChildren().add(passwordField);
+                passwordField.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent e) {
+                        if (!passwordField.getText().equals(solution)) {
+                            message.setText("Your password is incorrect!");
+                        } else {
+                            message.setText("Your password has been confirmed");
+                        }
+                        passwordField.clear();
+                    }
+                });
             }
         });
     }
