@@ -27,28 +27,46 @@ public class Room extends Pane{
     public Room(int roomNumber) {
         super();
         door = new Door();
-        if(roomNumber == 1){
-            image = "file:Images/background.jpg";
+
+        switch (roomNumber) {
+            case 1:
+                image = "file:Images/background.jpg";
+                break;
+            case 2:
+                image = "file:Images/space.png";
+                break;
+            default:
+                image = "file:Images/inventory.png";
         }
-        else if(roomNumber == 2){
-            image = "file:Images/background.jpg";
-        }
-        else{
-            image = "file:Images/background.jpg";
-        }
+
         background = new Image(image);
         backgroundView = new ImageView(background);
-        backgroundView.setViewport(new Rectangle2D(0,0,512,512));
+        backgroundView.setViewport(new Rectangle2D(0, 0, 512, 512));
         getChildren().add(backgroundView);
+        getChildren().add(getDoor());
+        switch (roomNumber) {
+            case 1:
+                Puzzle1 pz1 = new Puzzle1();
+                getChildren().add(pz1.getSafe());
+                break;
+            case 2:
+                Puzzle2 pz2 = new Puzzle2();
+                break;
+            default:
+                Puzzle3 pz3 = new Puzzle3();
+        }
     }
 
     public Door getDoor() {
         return door;
     }
 
+
     public String getImage() {
         return image;
     }
+
+
 
 
 }

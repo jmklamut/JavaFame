@@ -29,23 +29,9 @@ public class GUI_EscapeRoom extends Application {
         primaryStage.show();
 
         root.getChildren().add(easy);
-        root.getChildren().add(easy.getDoor());
 
 
 
-
-
-
-
-
-
-
-/*
-            Canvas canvas = new Canvas(400, 250);
-            root.getChildren().add(canvas);
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.drawImage(earth,180,100);
-            */
 
 
     }
