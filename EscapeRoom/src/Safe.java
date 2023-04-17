@@ -38,7 +38,7 @@ public class Safe extends Pane{
     public Safe(){
         super();
         isLocked = true;
-        image = "file:Images/Safe.png";
+        image = "file:Images/NewSafe.png";
         solution = "";
         safe = new Image(image);
         safeView = new ImageView(safe);
