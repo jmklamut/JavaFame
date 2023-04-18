@@ -27,7 +27,7 @@ import javafx.scene.image.*;
 
 import java.awt.*;
 
-public class Safe extends Pane{
+public class Safe extends Pane {
 
     private boolean isLocked;
     private String solution;
@@ -35,10 +35,11 @@ public class Safe extends Pane{
     private Image safe;
     private ImageView safeView;
 
-    public Safe(){
+
+    public Safe() {
         super();
         isLocked = true;
-        image = "file:Images/NewSafe.png";
+        image = "file:Images/Safe.png";
         solution = "";
         safe = new Image(image);
         safeView = new ImageView(safe);
@@ -47,7 +48,7 @@ public class Safe extends Pane{
         safeView.setScaleX(.1);
         safeView.setScaleY(.1);
         getChildren().add(safeView);
-        setOnMouseClicked(new EventHandler<MouseEvent>() {
+        safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 final Label message = new Label("");
@@ -56,12 +57,16 @@ public class Safe extends Pane{
                 passwordField.setPromptText("Enter Code Here");
                 getChildren().add(passwordField);
                 passwordField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent e) {
+                    @Override
+                    public void handle(ActionEvent e) {
                         if (!passwordField.getText().equals(solution)) {
                             message.setText("Your password is incorrect!");
+                            isLocked = true;
                         } else {
                             message.setText("Your password has been confirmed");
+                            isLocked = false;
                         }
+
                         passwordField.clear();
                     }
                 });
@@ -69,18 +74,22 @@ public class Safe extends Pane{
         });
     }
 
-    public void setSolution(String ans){
+    public void setSolution(String ans) {
         solution = ans;
     }
 
-    public void check(String ans){
-        if(solution == ans){
+    public void check(String ans) {
+        if (solution == ans) {
             isLocked = false;
         }
     }
 
-    public Image getImage(){
+    public Image getImage() {
         return safe;
+
     }
 
+    public boolean checkLock() {
+        return isLocked;
+    }
 }

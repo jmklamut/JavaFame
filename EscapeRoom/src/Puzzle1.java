@@ -26,7 +26,6 @@ public class Puzzle1 extends Pane{
     public Puzzle1(){
         safe = new Safe();
         safe.setSolution("1776");
-
     }
 
     public String displayQuestion(){

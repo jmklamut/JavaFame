@@ -38,7 +38,7 @@ public class Door extends Pane{
         doorView.setScaleY(1.5);
         getChildren().add(doorView);
 
-        setOnMouseClicked(new EventHandler<MouseEvent>() {
+        doorView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                     image = "file:Images/unLocked.png";
