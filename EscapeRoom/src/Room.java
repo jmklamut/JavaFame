@@ -26,15 +26,16 @@ public class Room extends Pane{
     private Image background;
     private ImageView backgroundView;
     private Inventory invent;
-    final private String inventorybutton;
-    private boolean display_inventory;
+    private Button invent_Button;
 
 
 
     public Room(int roomNumber) {
         super();
         door = new Door();
-        display_inventory = false;
+
+        invent_Button = new Button();
+        getChildren().add(invent_Button);
         switch (roomNumber) {
             case 1:
                 image = "file:Images/background.jpg";
@@ -63,24 +64,10 @@ public class Room extends Pane{
             default:
                 Puzzle3 pz3 = new Puzzle3();
         }
-        inventorybutton = "file:Image/yes.png";
-        Image button = new Image(inventorybutton);
-        ImageView buttonView = new ImageView(button);
-        getChildren().add(buttonView);
-        buttonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                display_inventory = true;
-            }
-        });
     }
 
     public Door getDoor() {
         return door;
-    }
-
-    public boolean getDisplay(){
-        return display_inventory;
     }
 
     public String getImage() {
