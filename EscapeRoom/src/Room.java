@@ -26,16 +26,15 @@ public class Room extends Pane{
     private Image background;
     private ImageView backgroundView;
     private Inventory invent;
-    private Button invent_Button;
+   // private Button invent_Button;
 
 
 
     public Room(int roomNumber) {
         super();
         door = new Door();
+       // invent_Button = new Button();
 
-        invent_Button = new Button();
-        getChildren().add(invent_Button);
         switch (roomNumber) {
             case 1:
                 image = "file:Images/background.jpg";
@@ -49,14 +48,18 @@ public class Room extends Pane{
 
         background = new Image(image);
         backgroundView = new ImageView(background);
-        backgroundView.setViewport(new Rectangle2D(0, 0, 512, 512));
+        backgroundView.setViewport(new Rectangle2D(0, 0, 1000, 1000));
         getChildren().add(backgroundView);
         getChildren().add(getDoor());
+       // getChildren().add(invent_Button);
 
         switch (roomNumber) {
             case 1:
                 Puzzle1 pz1 = new Puzzle1();
                 getChildren().add(pz1.getSafe());
+                if(!door.isLocked()){
+                    door.setLocked(false);
+                }
                 break;
             case 2:
                 Puzzle2 pz2 = new Puzzle2();
@@ -69,6 +72,12 @@ public class Room extends Pane{
     public Door getDoor() {
         return door;
     }
+/*
+    public Button getInvent_Button() {
+        return invent_Button;
+    }
+    */
+
 
     public String getImage() {
         return image;

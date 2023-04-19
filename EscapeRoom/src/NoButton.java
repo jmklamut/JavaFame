@@ -21,13 +21,13 @@ import javafx.scene.text.*;
 import javafx.scene.image.*;
 
 
-public class Button extends Pane{
+public class NoButton extends Pane{
 
     private boolean display_inventory;
 
-    public Button(){
-        display_inventory = false;
-        String inventory_button = "file:Images/yes.png";
+    public NoButton(){
+        display_inventory = true;
+        String inventory_button = "file:Images/no.png";
         Image button = new Image(inventory_button);
         ImageView buttonView = new ImageView(button);
         buttonView.setX(500);
@@ -39,8 +39,8 @@ public class Button extends Pane{
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                display_inventory = true;
-//                System.out.println("gotcha");
+                display_inventory = false;
+
             }
         });
     }
