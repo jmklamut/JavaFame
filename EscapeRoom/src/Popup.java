@@ -3,6 +3,27 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
+import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.application.Application;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
+import javafx.scene.image.*;
+
 
 
 public class Popup {
@@ -22,13 +43,28 @@ public class Popup {
         Button button1= new Button("Close");
         button1.setOnAction(e -> popupwindow.close());
 
+
         VBox layout= new VBox(10);
+
+        StackPane stack = new StackPane();
+
+        Image note = new Image("file:Images/HandNote.png");
+        ImageView noteView = new ImageView(note);
+        noteView.setScaleX(.5);
+        noteView.setScaleY(.5);
+
+        BorderPane pane = new BorderPane();
+        pane.setCenter(noteView);
+
         layout.getChildren().addAll(label1, button1);
         layout.setAlignment(Pos.CENTER);
 
-        Scene scene1= new Scene(layout, 300, 250);
+        stack.getChildren().addAll(noteView, layout);
+
+        Scene scene1= new Scene(stack, 300, 250);
 
         popupwindow.setScene(scene1);
+
         popupwindow.showAndWait();
 
     }
