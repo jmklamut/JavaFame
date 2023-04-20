@@ -22,10 +22,13 @@ public class Puzzle1 extends Pane{
     private String solution;
     private String question;
     private Safe safe;
+    private Paper paper;
 
     public Puzzle1(){
         safe = new Safe();
         safe.setSolution("1776");
+        paper = new Paper();
+
     }
 
     public String displayQuestion(){
@@ -39,5 +42,7 @@ public class Puzzle1 extends Pane{
     public Safe getSafe(){
         return safe;
     }
+
+    public Paper getPaper() {return paper; }
 
 }

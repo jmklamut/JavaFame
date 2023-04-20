@@ -2,6 +2,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class GUI_EscapeRoom extends Application {
@@ -11,7 +12,7 @@ public class GUI_EscapeRoom extends Application {
     private Scene InventoryScene;
     private Group root;
     private Group root2;
-    private Button yes;
+    private YesButton yes;
     private NoButton no;
 
     @Override
@@ -28,7 +29,7 @@ public class GUI_EscapeRoom extends Application {
 
         RoomScene = new Scene(root, 512, 512,true);
         InventoryScene = new Scene(root2, 512, 512, true);
-        yes = new Button();
+        yes = new YesButton();
         no = new NoButton();
         root.getChildren().add(easy);
         root2.getChildren().add(inventory);
@@ -38,13 +39,15 @@ public class GUI_EscapeRoom extends Application {
         primaryStage.setScene(RoomScene);
         primaryStage.show();
 
+
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 if(yes.isDisplay_inventory() == true) {
                     primaryStage.setScene(InventoryScene);
                     yes.setDisplay_inventory(false);
-                } else if(no.isDisplay_inventory() == false) {
+                }
+                else if(no.isDisplay_inventory() == false) {
                     primaryStage.setScene(RoomScene);
                     no.setDisplay_inventory(true);
                 }
@@ -52,6 +55,8 @@ public class GUI_EscapeRoom extends Application {
 
         };
         animationTimer.start();
+
+
     }
 
     public Scene getRoomScene(){

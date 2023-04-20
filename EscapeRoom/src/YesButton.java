@@ -1,31 +1,15 @@
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.canvas.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.scene.image.*;
 
 
-public class Button extends Pane{
+public class YesButton extends Pane{
 
     private boolean display_inventory;
 
-    public Button(){
+    public YesButton(){
         display_inventory = false;
         String inventory_button = "file:Images/yes.png";
         Image button = new Image(inventory_button);

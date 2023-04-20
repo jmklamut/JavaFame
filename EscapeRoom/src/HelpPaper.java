@@ -82,7 +82,14 @@ public class HelpPaper extends Pane {
         papers[15] = new Image(im15url) ;
         paperView[15] = new ImageView(papers[15]);
 
+    }
 
+    public Image getPaper(int paper){
+        return papers[paper];
+    }
+
+    public ImageView getPaperView(int view){
+        return paperView[view];
     }
 
 
