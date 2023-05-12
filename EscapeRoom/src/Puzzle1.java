@@ -23,12 +23,17 @@ public class Puzzle1 extends Pane{
     private String question;
     private Safe safe;
     private Paper paper;
+    private Table table;
 
     public Puzzle1(){
         safe = new Safe();
         safe.setSolution("1776");
         paper = new Paper();
-
+        table = new Table();
+        table.setTranslateX(800);
+        table.setTranslateY(500);
+        table.setScaleX(4);
+        table.setScaleY(4);
     }
 
     public String displayQuestion(){
@@ -45,4 +50,7 @@ public class Puzzle1 extends Pane{
 
     public Paper getPaper() {return paper; }
 
+    public Table getTable() {
+        return table;
+    }
 }

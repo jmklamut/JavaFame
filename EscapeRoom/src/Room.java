@@ -58,6 +58,7 @@ public class Room extends Pane{
                 Puzzle1 pz1 = new Puzzle1();
                 getChildren().add(pz1.getSafe());
                 getChildren().add(pz1.getPaper());
+                getChildren().add(pz1.getTable());
                 if(!door.isLocked()){
                     door.setLocked(false);
                 }

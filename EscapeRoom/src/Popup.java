@@ -38,7 +38,10 @@ public class Popup {
 
         Label label1= new Label("Hello! Welcome to Frenchies Game!\n"+ "" +
                 "You are currently in the first room of my game!\n" + "You will be able to escape if you're smart enough\n" +
-                "The only clue I will give you is this:\n ");
+                "The only clue I will give you is this:\n "+
+                "The safe contains escape.\n"+
+                " Look around the room to find clues.\n"+
+                "Don't take too long");
 
         Button button1= new Button("Close");
         button1.setOnAction(e -> popupwindow.close());
@@ -61,7 +64,7 @@ public class Popup {
 
         stack.getChildren().addAll(noteView, layout);
 
-        Scene scene1= new Scene(stack, 300, 250);
+        Scene scene1= new Scene(stack, 400, 300);
 
         popupwindow.setScene(scene1);
 
