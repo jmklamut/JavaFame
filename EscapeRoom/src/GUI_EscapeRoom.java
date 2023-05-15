@@ -14,13 +14,13 @@ public class GUI_EscapeRoom extends Application {
     public Integer seconds;
     private Scene RoomScene;
     private Scene InventoryScene;
-    private Scene Over;
+    private Scene overScene;
     private Group root;
     private Group root2;
     private Group root3;
     private YesButton yes;
     private NoButton no;
-    private Scene overScene;
+
 
 
     @Override
