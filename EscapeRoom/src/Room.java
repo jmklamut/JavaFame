@@ -26,6 +26,7 @@ public class Room extends Pane{
     private Image background;
     private ImageView backgroundView;
     private Inventory invent;
+    private GameTime timer;
    // private Button invent_Button;
 
 
@@ -33,6 +34,7 @@ public class Room extends Pane{
     public Room(int roomNumber) {
         super();
         door = new Door();
+        timer = new GameTime();
        // invent_Button = new Button();
 
         switch (roomNumber) {
@@ -51,6 +53,7 @@ public class Room extends Pane{
         backgroundView.setViewport(new Rectangle2D(0, 0, 1000, 1000));
         getChildren().add(backgroundView);
         getChildren().add(getDoor());
+        getChildren().add(timer);
        // getChildren().add(invent_Button);
 
         switch (roomNumber) {
@@ -74,6 +77,7 @@ public class Room extends Pane{
     public Door getDoor() {
         return door;
     }
+
 /*
     public Button getInvent_Button() {
         return invent_Button;
@@ -85,7 +89,9 @@ public class Room extends Pane{
         return image;
     }
 
-
+    public GameTime getGameTime(){
+        return timer;
+    }
 
 
 }

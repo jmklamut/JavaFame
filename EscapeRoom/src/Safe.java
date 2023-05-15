@@ -51,7 +51,7 @@ public class Safe extends Pane {
         safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                final Label message = new Label("");
+                Label message = new Label("");
 
                 PasswordField passwordField = new PasswordField();
                 passwordField.setPromptText("Enter Code Here");

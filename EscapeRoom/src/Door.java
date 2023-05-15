@@ -28,7 +28,6 @@ public class Door extends Pane{
 
     public Door(){
         super();
-        isLocked = true;
         image = "file:Images/Locked.png";
         door = new Image(image);
         doorView = new ImageView(door);
