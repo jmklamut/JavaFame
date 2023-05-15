@@ -21,11 +21,8 @@ import javafx.scene.image.*;
 
 
 public class Paper extends Pane{
-    private Popup popup;
-
     public Paper() {
         super();
-        popup = new Popup(this);
         Image paper = new Image("file:Images/papers.png");
         ImageView paperView = new ImageView(paper);
         paperView.setX(1000);
@@ -34,7 +31,7 @@ public class Paper extends Pane{
         paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                popup.display();
+                Popup.display();
             }
         });
     }

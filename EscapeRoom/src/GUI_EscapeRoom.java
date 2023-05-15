@@ -10,8 +10,8 @@ import javafx.scene.image.ImageView;
 
 public class GUI_EscapeRoom extends Application {
 
-    private Scene RoomScene;
-    private Scene InventoryScene;
+    private Scene roomScene;
+    private Scene inventoryScene;
     private Scene overScene;
     private Group root;
     private Group root2;
@@ -33,8 +33,8 @@ public class GUI_EscapeRoom extends Application {
         Room hard = new Room(3);
         Inventory inventory = new Inventory();
 
-        RoomScene = new Scene(root, 1000, 512,true);
-        InventoryScene = new Scene(root2, 512, 512, true);
+        roomScene = new Scene(root, 1000, 512,true);
+        inventoryScene = new Scene(root2, 512, 512, true);
 
         overScene = new Scene(root3, 512,512,true);
 
@@ -51,7 +51,7 @@ public class GUI_EscapeRoom extends Application {
         root.getChildren().add(yes);
         root2.getChildren().add(no);
 
-        primaryStage.setScene(RoomScene);
+        primaryStage.setScene(roomScene);
         //primaryStage.show();
 
         primaryStage.setMaximized(true);
@@ -64,11 +64,11 @@ public class GUI_EscapeRoom extends Application {
             @Override
             public void handle(long l) {
                 if(yes.isDisplay_inventory() == true) {
-                    primaryStage.setScene(InventoryScene);
+                    primaryStage.setScene(inventoryScene);
                     yes.setDisplay_inventory(false);
                 }
                 else if(no.isDisplay_inventory() == false) {
-                    primaryStage.setScene(RoomScene);
+                    primaryStage.setScene(roomScene);
                     no.setDisplay_inventory(true);
                 }
                 if(easy.getGameTime().isGame_over()) {
@@ -87,11 +87,11 @@ public class GUI_EscapeRoom extends Application {
     }
 
     public Scene getRoomScene(){
-        return RoomScene;
+        return roomScene;
     }
 
     public Scene getInventoryScene(){
-        return InventoryScene;
+        return inventoryScene;
     }
 
 
