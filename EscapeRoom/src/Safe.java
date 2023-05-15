@@ -61,9 +61,11 @@ public class Safe extends Pane {
                     public void handle(ActionEvent e) {
                         if (!passwordField.getText().equals(solution)) {
                             message.setText("Your password is incorrect!");
+                            System.out.println("Your password is incorrect!");
                             isLocked = true;
                         } else {
                             message.setText("Your password has been confirmed");
+                            System.out.println("Your password has been confirmed");
                             isLocked = false;
                         }
 

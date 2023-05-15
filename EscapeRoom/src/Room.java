@@ -27,6 +27,7 @@ public class Room extends Pane{
     private ImageView backgroundView;
     private Inventory invent;
     private GameTime timer;
+    private Puzzle1 pz1;
    // private Button invent_Button;
 
 
@@ -60,7 +61,7 @@ public class Room extends Pane{
 
         switch (roomNumber) {
             case 1:
-                Puzzle1 pz1 = new Puzzle1();
+                pz1 = new Puzzle1();
                 getChildren().add(pz1.getSafe());
                 getChildren().add(pz1.getPaper());
                 getChildren().add(pz1.getTable());
@@ -95,5 +96,8 @@ public class Room extends Pane{
         return timer;
     }
 
+    public Puzzle1 getPz1(){
+        return pz1;
+    }
 
 }

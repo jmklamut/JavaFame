@@ -26,14 +26,20 @@ import javafx.scene.image.*;
 
 
 
-public class Popup {
+public class Popup extends Stage{
 
-    public static void display()
+    private Pane parent;
+
+    public Popup(Pane parent) {
+        this.parent = parent;
+    }
+
+    public void display()
     {
-        Stage popupwindow = new Stage();
+        //popupwindow = new Stage();
 
-        popupwindow.initModality(Modality.APPLICATION_MODAL);
-        popupwindow.setTitle("Note One");
+        this.initModality(Modality.APPLICATION_MODAL);
+        this.setTitle("Note One");
 
 
         Label label1= new Label("Hello! Welcome to Frenchies Game!\n"+ "" +
@@ -44,7 +50,7 @@ public class Popup {
                 "Don't take too long");
 
         Button button1= new Button("Close");
-        button1.setOnAction(e -> popupwindow.close());
+        button1.setOnAction(e -> this.close());
 
 
         VBox layout= new VBox(10);
@@ -66,10 +72,10 @@ public class Popup {
 
         Scene scene1= new Scene(stack, 400, 300);
 
-        popupwindow.setScene(scene1);
-
-        popupwindow.showAndWait();
-
+        this.setScene(scene1);
+      //  this.initOwner((Stage)parent);
+        this.showAndWait();
+        //this.show();
     }
 
 }

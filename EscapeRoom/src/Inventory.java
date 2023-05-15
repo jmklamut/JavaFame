@@ -35,10 +35,13 @@ public class Inventory extends Pane{
 
     }
 
-    private void addItem(String im){
+    public void addItem(String im){
         Image item = new Image(im);
         ImageView itemView = new ImageView(item);
         getChildren().add(itemView);
     }
+
+
+
 
 }

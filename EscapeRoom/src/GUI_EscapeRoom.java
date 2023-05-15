@@ -1,6 +1,5 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -11,7 +10,6 @@ import javafx.scene.image.ImageView;
 
 public class GUI_EscapeRoom extends Application {
 
-    public Integer seconds;
     private Scene RoomScene;
     private Scene InventoryScene;
     private Scene overScene;
@@ -54,8 +52,13 @@ public class GUI_EscapeRoom extends Application {
         root2.getChildren().add(no);
 
         primaryStage.setScene(RoomScene);
-        primaryStage.show();
+        //primaryStage.show();
 
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
+        primaryStage.setResizable(false);
+
+        primaryStage.show();
 
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
@@ -68,19 +71,19 @@ public class GUI_EscapeRoom extends Application {
                     primaryStage.setScene(RoomScene);
                     no.setDisplay_inventory(true);
                 }
-                if(easy.getGameTime().isGameover()) {
+                if(easy.getGameTime().isGame_over()) {
                     primaryStage.setScene(overScene);
                     stop();
                 }
-                primaryStage.setMaximized(true);
-                primaryStage.setFullScreen(true);
+                if(easy.getPz1().getSafe().checkLock()){
+                    inventory.addItem("file:Images/key.png");
+                }
+
                 primaryStage.show();
             }
 
         };
         animationTimer.start();
-
-
     }
 
     public Scene getRoomScene(){

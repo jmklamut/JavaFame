@@ -1,32 +1,14 @@
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.stage.*;
-import javafx.scene.*;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-import javafx.scene.image.*;
-import java.awt.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.scene.*;
-import javafx.scene.paint.*;
+
 import javafx.scene.canvas.*;
 
 public class GameTime extends Pane{
@@ -34,12 +16,12 @@ public class GameTime extends Pane{
     private Timer countdown;
     private Canvas canvas;
     private TimerTask timerTask;
-    private boolean gameover;
+    private boolean game_over;
 
     public GameTime(){
-        seconds = 10;
+        seconds = 100;
         countdown = new Timer();
-        gameover = false;
+        game_over = false;
         //display = new Label(seconds.toString());
         //System.out.println(display.getText());
         canvas = new Canvas(150,150);
@@ -62,7 +44,7 @@ public class GameTime extends Pane{
                 }
                 else{
                     countdown.cancel();
-                    gameover = true;
+                    game_over = true;
 
                 }
             }
@@ -79,8 +61,8 @@ public class GameTime extends Pane{
         return canvas;
     }
 
-    public boolean isGameover() {
-        return gameover;
+    public boolean isGame_over() {
+        return game_over;
     }
 }
 
