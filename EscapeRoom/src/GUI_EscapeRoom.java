@@ -1,7 +1,9 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,6 +42,8 @@ public class GUI_EscapeRoom extends Application {
 
         Image overImage = new Image("file:Images/game over.png");
         ImageView overView = new ImageView(overImage);
+        overView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        overView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         root3.getChildren().add(overView);
 
         yes = new YesButton();
@@ -62,14 +66,14 @@ public class GUI_EscapeRoom extends Application {
                 }
                 else if(no.isDisplay_inventory() == false) {
                     primaryStage.setScene(RoomScene);
-
                     no.setDisplay_inventory(true);
                 }
-                primaryStage.setMaximized(true);
                 if(easy.getGameTime().isGameover()) {
                     primaryStage.setScene(overScene);
+                    stop();
                 }
                 primaryStage.setMaximized(true);
+                primaryStage.setFullScreen(true);
                 primaryStage.show();
             }
 

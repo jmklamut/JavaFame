@@ -22,7 +22,6 @@ public class Inventory extends Pane{
     private String image;
     private Image background;
     private ImageView backgroundView;
-    private NoButton goback;
 
 
     public Inventory(){
@@ -30,7 +29,8 @@ public class Inventory extends Pane{
         image = "file:Images/inventory page.png";
         background = new Image(image);
         backgroundView = new ImageView(background);
-        backgroundView.setViewport(new Rectangle2D(0, 0, 1000, 1000));
+        backgroundView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        backgroundView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         getChildren().add(backgroundView);
 
     }
@@ -41,7 +41,4 @@ public class Inventory extends Pane{
         getChildren().add(itemView);
     }
 
-    public NoButton getGoback() {
-        return goback;
-    }
 }

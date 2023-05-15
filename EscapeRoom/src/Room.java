@@ -50,7 +50,9 @@ public class Room extends Pane{
 
         background = new Image(image);
         backgroundView = new ImageView(background);
-        backgroundView.setViewport(new Rectangle2D(0, 0, 1000, 1000));
+        backgroundView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        backgroundView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+
         getChildren().add(backgroundView);
         getChildren().add(getDoor());
         getChildren().add(timer);
