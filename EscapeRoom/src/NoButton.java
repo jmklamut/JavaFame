@@ -38,7 +38,7 @@ public class NoButton extends Pane{
         buttonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
+                //Inventory.getStage().close();
                 display_inventory = false;
 
             }

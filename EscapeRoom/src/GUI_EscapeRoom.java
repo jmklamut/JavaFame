@@ -1,7 +1,10 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -17,7 +20,7 @@ public class GUI_EscapeRoom extends Application {
     private Group root2;
     private Group root3;
     private YesButton yes;
-    private NoButton no;
+   // private NoButton no;
 
 
 
@@ -26,15 +29,15 @@ public class GUI_EscapeRoom extends Application {
         primaryStage.setTitle("EscapeRoom");
 
         root = new Group();
-        root2 = new Group();
+       // root2 = new Group();
         root3 = new Group();
-        Room easy = new Room(1);
-        Room medium = new Room(2);
-        Room hard = new Room(3);
+        Puzzle1 easy = new Puzzle1();
+        Room medium = new Room();
+        Room hard = new Room();
         Inventory inventory = new Inventory();
 
         roomScene = new Scene(root, 1000, 512,true);
-        inventoryScene = new Scene(root2, 512, 512, true);
+        //inventoryScene = new Scene(root2, 512, 512, true);
 
         overScene = new Scene(root3, 512,512,true);
 
@@ -45,45 +48,36 @@ public class GUI_EscapeRoom extends Application {
         root3.getChildren().add(overView);
 
         yes = new YesButton();
-        no = new NoButton();
+       // no = new NoButton();
         root.getChildren().add(easy);
-        root2.getChildren().add(inventory);
+       // root2.getChildren().add(inventory);
+
+
         root.getChildren().add(yes);
-        root2.getChildren().add(no);
+
+       // root2.getChildren().add(no);
 
         primaryStage.setScene(roomScene);
         //primaryStage.show();
 
-        primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
-        primaryStage.setResizable(false);
+      //  primaryStage.setMaximized(true);
+      //  primaryStage.setFullScreen(true);
+
 
         primaryStage.show();
 
-        AnimationTimer animationTimer = new AnimationTimer() {
+        AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if(yes.isDisplay_inventory() == true) {
-                    primaryStage.setScene(inventoryScene);
-                    yes.setDisplay_inventory(false);
-                }
-                else if(no.isDisplay_inventory() == false) {
-                    primaryStage.setScene(roomScene);
-                    no.setDisplay_inventory(true);
-                }
-                if(easy.getGameTime().isGame_over()) {
-                    primaryStage.setScene(overScene);
-                    stop();
-                }
-                if(easy.getPz1().getSafe().checkLock()){
-                    inventory.addItem("file:Images/key.png");
-                }
-
-                primaryStage.show();
+                yes.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEven) {
+                        inventory.getStage().show();
+                    }
+                });
             }
-
         };
-        animationTimer.start();
+        timer.start();
     }
 
     public Scene getRoomScene(){

@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.image.*;
 
-public class Puzzle1 extends Pane{
+public class Puzzle1 extends Room{
 
     private String solution;
     private String question;
@@ -25,7 +25,8 @@ public class Puzzle1 extends Pane{
     private Paper paper;
     private Table table;
 
-    public Puzzle1(){
+    public Puzzle1() {
+        super();
         safe = new Safe();
         safe.setSolution("1776");
         paper = new Paper();
@@ -34,6 +35,21 @@ public class Puzzle1 extends Pane{
         table.setTranslateY(500);
         table.setScaleX(4);
         table.setScaleY(4);
+        getChildren().add(safe);
+        getChildren().add(paper);
+        getChildren().add(table);
+
+/*
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if(!safe.checkLock()){
+                    Inventory.addItem("file:Images/key.png");
+                }
+            }
+        };
+
+ */
     }
 
     public String displayQuestion(){

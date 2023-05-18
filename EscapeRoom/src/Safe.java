@@ -1,29 +1,10 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.geometry.Insets;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.canvas.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.*;
-import javafx.scene.image.*;
 
 import java.awt.*;
 
@@ -34,10 +15,12 @@ public class Safe extends Pane {
     private String image;
     private Image safe;
     private ImageView safeView;
+    private Key key;
 
 
     public Safe() {
         super();
+        key = new Key();
         isLocked = true;
         image = "file:Images/Safe.png";
         solution = "";
@@ -48,11 +31,12 @@ public class Safe extends Pane {
         safeView.setScaleX(.1);
         safeView.setScaleY(.1);
         getChildren().add(safeView);
+        System.out.println(isLocked);
         safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Label message = new Label("");
-
+                message.setLocation(100,100);
                 PasswordField passwordField = new PasswordField();
                 passwordField.setPromptText("Enter Code Here");
                 getChildren().add(passwordField);

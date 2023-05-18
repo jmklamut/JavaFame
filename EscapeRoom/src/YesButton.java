@@ -22,9 +22,8 @@ public class YesButton extends Pane{
         buttonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-
+                //Inventory.displayInventory();
                 display_inventory = true;
-//                System.out.println("gotcha");
             }
         });
     }

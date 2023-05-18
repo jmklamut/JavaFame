@@ -32,22 +32,13 @@ public class Room extends Pane{
 
 
 
-    public Room(int roomNumber) {
+    public Room() {
         super();
         door = new Door();
         timer = new GameTime();
        // invent_Button = new Button();
 
-        switch (roomNumber) {
-            case 1:
-                image = "file:Images/background.jpg";
-                break;
-            case 2:
-                image = "file:Images/space.png";
-                break;
-            default:
-                image = "file:Images/inventory.png";
-        }
+        image = "file:Images/background.jpg";
 
         background = new Image(image);
         backgroundView = new ImageView(background);
@@ -57,24 +48,12 @@ public class Room extends Pane{
         getChildren().add(backgroundView);
         getChildren().add(getDoor());
         getChildren().add(timer);
+
+        if(!door.isLocked()){
+            door.setLocked(false);
+        }
        // getChildren().add(invent_Button);
 
-        switch (roomNumber) {
-            case 1:
-                pz1 = new Puzzle1();
-                getChildren().add(pz1.getSafe());
-                getChildren().add(pz1.getPaper());
-                getChildren().add(pz1.getTable());
-                if(!door.isLocked()){
-                    door.setLocked(false);
-                }
-                break;
-            case 2:
-                Puzzle2 pz2 = new Puzzle2();
-                break;
-            default:
-                Puzzle3 pz3 = new Puzzle3();
-        }
     }
 
     public Door getDoor() {
@@ -96,8 +75,9 @@ public class Room extends Pane{
         return timer;
     }
 
-    public Puzzle1 getPz1(){
-        return pz1;
+    public void setImage(String str){
+        image = str;
     }
+
 
 }
