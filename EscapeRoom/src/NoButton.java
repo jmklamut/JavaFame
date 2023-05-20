@@ -25,7 +25,7 @@ public class NoButton extends Pane{
 
     private boolean display_inventory;
 
-    public NoButton(){
+    public NoButton(Stage inventory){
         display_inventory = true;
         String inventory_button = "file:Images/no.png";
         Image button = new Image(inventory_button);
@@ -40,6 +40,7 @@ public class NoButton extends Pane{
             public void handle(MouseEvent mouseEvent) {
                 //Inventory.getStage().close();
                 display_inventory = false;
+                inventory.close();
 
             }
         });

@@ -1,12 +1,9 @@
-import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.*;
 import javafx.scene.*;
@@ -16,14 +13,18 @@ public class Inventory {
     private  String image;
     private  Image background;
     private  ImageView backgroundView;
-    private Stage inventory;
+    private Stage inventory_stage;
     private Group root;
     private Scene inventoryScene;
+    private NoButton no;
+
+    private boolean worked;
 
 
     public Inventory(){
-
-        inventory = new Stage();
+        worked = false;
+        inventory_stage = new Stage();
+        inventory_stage.setTitle("Inventory");
         root = new Group();
         inventoryScene =  new Scene(root,512,512,true);
         image = "file:Images/inventory page.png";
@@ -33,21 +34,20 @@ public class Inventory {
         backgroundView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         root.getChildren().add(backgroundView);
 
-        NoButton no = new NoButton();
+        no = new NoButton(inventory_stage);
+        /*
         Button close = new Button();
         close.setOnAction(e->inventory.close());
-
+        */
         root.getChildren().add(no);
-        root.getChildren().add(close);
+        //root.getChildren().add(close);
 
-        inventory.setScene(inventoryScene);
+        inventory_stage.setScene(inventoryScene);
 
     }
 
 
-    public void addItem(String im){
-        Image item = new Image(im);
-        ImageView itemView = new ImageView(item);
+    public void addItem(ImageView itemView){
         root.getChildren().add(itemView);
     }
 
@@ -55,18 +55,25 @@ public class Inventory {
         root.getChildren().remove(im);
     }
 
-    public void useItem(Image view) {
-        ImageView temp = new ImageView(view);
-        temp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    public boolean useItem(Image view, ImageView imageView) {
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 root.setCursor(new ImageCursor(view));
+                worked = true;
             }
         });
+
+        if(worked){
+           return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public Stage getStage(){
-        return inventory;
+        return inventory_stage;
     }
 
 

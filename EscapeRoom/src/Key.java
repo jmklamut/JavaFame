@@ -27,7 +27,15 @@ public class Key extends Pane {
     public Key(){
         keyImage = new Image("file:Images/key.png");
         keyView = new ImageView(keyImage);
-        getChildren().add(keyView);
+
+    }
+
+    public ImageView getImageView(){
+        return keyView;
+    }
+
+    public Image getImage(){
+        return keyImage;
     }
 
 }

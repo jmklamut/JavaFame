@@ -1,12 +1,16 @@
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.control.Label;
 
-import java.awt.*;
 
 public class Safe extends Pane {
 
@@ -26,38 +30,11 @@ public class Safe extends Pane {
         solution = "";
         safe = new Image(image);
         safeView = new ImageView(safe);
-        safeView.setX(100);
-        safeView.setY(300);
-        safeView.setScaleX(.1);
-        safeView.setScaleY(.1);
+        safeView.setX(775);
+        safeView.setY(292);
+        safeView.setScaleX(.2);
+        safeView.setScaleY(.2);
         getChildren().add(safeView);
-        System.out.println(isLocked);
-        safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Label message = new Label("");
-                message.setLocation(100,100);
-                PasswordField passwordField = new PasswordField();
-                passwordField.setPromptText("Enter Code Here");
-                getChildren().add(passwordField);
-                passwordField.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent e) {
-                        if (!passwordField.getText().equals(solution)) {
-                            message.setText("Your password is incorrect!");
-                            System.out.println("Your password is incorrect!");
-                            isLocked = true;
-                        } else {
-                            message.setText("Your password has been confirmed");
-                            System.out.println("Your password has been confirmed");
-                            isLocked = false;
-                        }
-
-                        passwordField.clear();
-                    }
-                });
-            }
-        });
     }
 
     public void setSolution(String ans) {
@@ -75,7 +52,25 @@ public class Safe extends Pane {
 
     }
 
+    public ImageView getSafeView(){
+        return safeView;
+    }
+
+    public void runningSafe(){
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                System.out.println(l);
+            }
+        };
+        timer.start();
+    }
+
     public boolean checkLock() {
         return isLocked;
+    }
+
+    public void changeLock(boolean lock){
+        isLocked = lock;
     }
 }

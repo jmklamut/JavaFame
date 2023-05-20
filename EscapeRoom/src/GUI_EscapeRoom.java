@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -20,6 +21,8 @@ public class GUI_EscapeRoom extends Application {
     private Group root2;
     private Group root3;
     private YesButton yes;
+    private Inventory inventory;
+    private Puzzle1 easy;
    // private NoButton no;
 
 
@@ -31,12 +34,14 @@ public class GUI_EscapeRoom extends Application {
         root = new Group();
        // root2 = new Group();
         root3 = new Group();
-        Puzzle1 easy = new Puzzle1();
+        inventory = new Inventory();
+        easy = new Puzzle1(inventory, root);
         Room medium = new Room();
         Room hard = new Room();
-        Inventory inventory = new Inventory();
+
 
         roomScene = new Scene(root, 1000, 512,true);
+
         //inventoryScene = new Scene(root2, 512, 512, true);
 
         overScene = new Scene(root3, 512,512,true);
@@ -66,18 +71,36 @@ public class GUI_EscapeRoom extends Application {
 
         primaryStage.show();
 
+        easy.getSafe().getSafeView().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                System.out.println("Hello");
+            }
+        });
+
+        yes.getImageYes().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                inventory.getStage().show();
+                inventory.getStage().setMaximized(true);
+                inventory.getStage().setFullScreen(true);
+            }
+        });
+
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                yes.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEven) {
-                        inventory.getStage().show();
-                    }
-                });
+                if(easy.getGameTime().isGame_over()){
+                    primaryStage.setScene(overScene);
+                    primaryStage.setMaximized(true);
+                    primaryStage.setFullScreen(true);
+                    stop();
+                }
             }
         };
         timer.start();
+
     }
 
     public Scene getRoomScene(){

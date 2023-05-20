@@ -28,7 +28,15 @@ public class Table extends Pane{
     public Table(){
         table = new Image("file:Images/depressionTable.png");
         tableView = new ImageView(table);
+        tableView.setTranslateX(1000);
+        tableView.setTranslateY(500);
+        tableView.setScaleX(4);
+        tableView.setScaleY(4);
         getChildren().add(tableView);
+    }
+
+    public ImageView getTableView(){
+        return tableView;
     }
 
 }

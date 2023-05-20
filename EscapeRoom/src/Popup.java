@@ -28,6 +28,8 @@ import javafx.scene.image.*;
 
 public class Popup {
 
+    private static Label label1;
+
     public static void display()
     {
         Stage popupwindow = new Stage();
@@ -36,7 +38,7 @@ public class Popup {
         popupwindow.setTitle("Note One");
 
 
-        Label label1= new Label("Hello! Welcome to Frenchies Game!\n"+ "" +
+        label1= new Label("Hello! Welcome to Frenchies Game!\n"+ "" +
                 "You are currently in the first room of my game!\n" + "You will be able to escape if you're smart enough\n" +
                 "The only clue I will give you is this:\n "+
                 "The safe contains escape.\n"+
@@ -72,4 +74,7 @@ public class Popup {
 
     }
 
+    public static void changeMessage(String change){
+        label1.setText(change);
+    }
 }

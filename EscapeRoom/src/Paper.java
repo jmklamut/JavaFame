@@ -21,12 +21,16 @@ import javafx.scene.image.*;
 
 
 public class Paper extends Pane{
+
+    private Image paper;
+    private ImageView paperView;
+
     public Paper() {
         super();
-        Image paper = new Image("file:Images/papers.png");
-        ImageView paperView = new ImageView(paper);
-        paperView.setX(1000);
-        paperView.setY(100);
+        paper = new Image("file:Images/papers.png");
+        paperView = new ImageView(paper);
+        paperView.setX(600);
+        paperView.setY(600);
         getChildren().add(paperView);
         paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -34,5 +38,19 @@ public class Paper extends Pane{
                 Popup.display();
             }
         });
+    }
+
+    public void changeX(double x){
+        paperView.setX(x);
+    }
+
+    public void changeY(double y){
+        paperView.setY(y);
+    }
+
+
+
+    public void changeMessage(String x){
+        Popup.changeMessage(x);
     }
 }

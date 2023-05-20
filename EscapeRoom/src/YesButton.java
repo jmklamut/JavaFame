@@ -8,17 +8,21 @@ import javafx.scene.layout.Pane;
 public class YesButton extends Pane{
 
     private boolean display_inventory;
+    private String inventory_button;
+    private Image button;
+    private ImageView buttonView;
 
     public YesButton(){
         display_inventory = false;
-        String inventory_button = "file:Images/yes.png";
-        Image button = new Image(inventory_button);
-        ImageView buttonView = new ImageView(button);
+        inventory_button = "file:Images/yes.png";
+        button = new Image(inventory_button);
+        buttonView = new ImageView(button);
         buttonView.setX(500);
         buttonView.setY(500);
         buttonView.setScaleX(.1);
         buttonView.setScaleY(.1);
         getChildren().add(buttonView);
+        /*
         buttonView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -26,6 +30,7 @@ public class YesButton extends Pane{
                 display_inventory = true;
             }
         });
+         */
     }
 
     public boolean isDisplay_inventory() {
@@ -37,5 +42,8 @@ public class YesButton extends Pane{
         this.display_inventory = display_inventory;
     }
 
+    public ImageView getImageYes(){
+        return buttonView;
+    }
 
 }

@@ -27,14 +27,14 @@ public class Door extends Pane{
     private ImageView doorView;
 
     public Door(){
-        super();
+        //super();
         image = "file:Images/Locked.png";
         door = new Image(image);
         doorView = new ImageView(door);
-        doorView.setX(300);
-        doorView.setY(300);
-        doorView.setScaleX(1.5);
-        doorView.setScaleY(1.5);
+        doorView.setX(400);
+        doorView.setY(480);
+        doorView.setScaleX(3.0);
+        doorView.setScaleY(3.0);
         getChildren().add(doorView);
 
         doorView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -44,8 +44,8 @@ public class Door extends Pane{
                     changeImage(image);
                     doorView.setX(300);
                     doorView.setY(300);
-                    doorView.setScaleX(1.5);
-                    doorView.setScaleY(1.5);
+                    doorView.setScaleX(2);
+                    doorView.setScaleY(2);
                     getChildren().add(doorView);
 
             }
@@ -83,6 +83,10 @@ public class Door extends Pane{
                         +mouseEvent.getSceneX()+","+mouseEvent.getSceneY());
             }
         });
+    }
+
+    public ImageView getDoorView(){
+        return doorView;
     }
 }
 
