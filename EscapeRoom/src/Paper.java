@@ -48,7 +48,9 @@ public class Paper extends Pane{
         paperView.setY(y);
     }
 
-
+    public ImageView getPaperView(){
+        return paperView;
+    }
 
     public void changeMessage(String x){
         Popup.changeMessage(x);
