@@ -20,39 +20,45 @@ import javafx.scene.text.*;
 import javafx.scene.image.*;
 
 
-public class Paper extends Pane{
+public class Paper extends Pane {
 
     private Image paper;
     private ImageView paperView;
 
-    public Paper() {
+    public Paper(int numb) {
         super();
         paper = new Image("file:Images/papers.png");
         paperView = new ImageView(paper);
-        paperView.setX(600);
-        paperView.setY(600);
         getChildren().add(paperView);
-        paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Popup.display();
-            }
-        });
+        if(numb == 1) {
+            paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                 //   Popup.changeMessage();
+                    Popup.display();
+                }
+            });
+        }
+        else if(numb == 2){
+            paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                  //  PopUp2.display();
+                  //  PopUp2.changeText();
+                }
+            });
+        }
     }
 
-    public void changeX(double x){
+    public void changeX(double x) {
         paperView.setX(x);
     }
 
-    public void changeY(double y){
+    public void changeY(double y) {
         paperView.setY(y);
     }
 
-    public ImageView getPaperView(){
+    public ImageView getPaperView() {
         return paperView;
-    }
-
-    public void changeMessage(String x){
-        Popup.changeMessage(x);
     }
 }

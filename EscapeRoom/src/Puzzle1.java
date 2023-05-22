@@ -12,8 +12,9 @@ public class Puzzle1 extends Room{
     private String question;
     private Safe safe;
     private Paper paper;
-   // private Paper paper2;
+    private Paper paper2;
     private Table table;
+    private Key key;
     private FrenchFlag french;
     private boolean worked;
 
@@ -21,16 +22,18 @@ public class Puzzle1 extends Room{
         super(output);
         french = new FrenchFlag(output);
         safe = new Safe(output);
-        Key key = new Key();
+        key = new Key();
         safe.setSolution("1776");
-        paper = new Paper();
-      //  paper2 = new Paper();
-       // paper2.changeX(250);
-       // paper2.changeY(700);
+        paper = new Paper(1);
+        paper2 = new Paper(2);
+        paper.changeX(600);
+        paper.changeY(600);
+        paper2.changeX(250);
+        paper2.changeY(700);
         table = new Table(output);
         getChildren().add(safe);
         getChildren().add(paper);
-       // getChildren().add(paper2);
+        getChildren().add(paper2);
         getChildren().add(table);
         getChildren().add(french);
 
@@ -86,6 +89,10 @@ public class Puzzle1 extends Room{
     }
 
     public Paper getPaper() {return paper; }
+
+    public Key getKey(){
+        return key;
+    }
 
     public Table getTable() {
         return table;

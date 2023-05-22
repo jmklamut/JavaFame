@@ -69,7 +69,7 @@ public class Inventory {
         root.getChildren().add(itemView);
     }
 
-    public void removeItem(String im){
+    public void removeItem(ImageView im){
         root.getChildren().remove(im);
     }
 
@@ -81,13 +81,16 @@ public class Inventory {
                 worked = true;
             }
         });
-
         if(worked){
            return true;
         }
         else{
             return false;
         }
+    }
+
+    public void defaultCursor(){
+        root.setCursor(Cursor.DEFAULT);
     }
 
     public Stage getStage(){

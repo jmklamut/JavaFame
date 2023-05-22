@@ -28,7 +28,9 @@ import javafx.scene.image.*;
 
 public class Popup {
 
+
     private static Label label1;
+
 
     public static void display()
     {
@@ -38,12 +40,21 @@ public class Popup {
         popupwindow.setTitle("Note One");
 
 
-        label1= new Label("Hello! Welcome to Frenchies Game!\n"+ "" +
-                "You are currently in the first room of my game!\n" + "You will be able to escape if you're smart enough\n" +
-                "The only clue I will give you is this:\n "+
-                "The safe contains escape.\n"+
-                " Look around the room to find clues.\n"+
-                "Don't take too long");
+        label1= new Label();
+        label1.setText("Ah, greetings!\n You find yourself trapped within this confined room. "+
+                "\nHowever fear not, for your escape hinges on your wits. \n" +
+                "I am Frenchy, the enigmatic villain who \norchestrates this game. "+
+                "Can you rise to the challenge? \nThe room holds the answers you seek, \nbut time is of the essence. "+
+                "\n\nLet the pursuit of freedom commence!");
+
+        Font thefont = Font.font("Comic Sans MS", 12);
+        label1.setTextFill(Color.BLACK);
+        label1.setFont(thefont);
+        label1.setAlignment(Pos.CENTER);
+        label1.setTextAlignment(TextAlignment.CENTER);
+        label1.setTranslateX(8);
+        label1.setTranslateY(-15);
+
 
         Button button1= new Button("Close");
         button1.setOnAction(e -> popupwindow.close());
@@ -74,7 +85,10 @@ public class Popup {
 
     }
 
-    public static void changeMessage(String change){
-        label1.setText(change);
+    public Label getLabel(){
+        return label1;
+    }
+
+    public static void changeMessage(){
     }
 }

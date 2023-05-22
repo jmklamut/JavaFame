@@ -77,11 +77,11 @@ public class Safe extends Pane {
                             try{
                                 changeLock(false);
                                 isLocked = false;
-                                output.setText("Use Key in Inventory on Door");
+                                output.setText("Safe has been unlocked!");
                                 gc.clearRect(0,0,750,80);
-                                gc.fillText("Your password has been confirmed! Key has been added to Inventory",75, 75);
-                                gc.strokeText("Your password has been confirmed! Key has been added to Inventory", 75, 75);
-                                System.out.println("Your password has been confirmed! Key has been added to Inventory");
+                                gc.fillText("Safe Unlocked! Check Inventory!",75, 75);
+                                gc.strokeText("Safe Unlocked! Check Inventory!", 75, 75);
+                                System.out.println("Safe Unlocked! Check Inventory!");
                                 sleep(3000);
                                 pane_word.getChildren().remove(canvas);
                                 pane_word.getChildren().remove(password);

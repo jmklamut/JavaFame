@@ -20,9 +20,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.image.*;
 
+import static java.lang.Thread.sleep;
+
 public class Door extends Pane{
 
     private boolean isLocked;
+    private boolean next;
     private String image;
     private Image door;
     private Image undoor;
@@ -31,6 +34,7 @@ public class Door extends Pane{
     public Door(Label output){
         //super();
         isLocked = true;
+        next = false;
         image = "file:Images/Locked.png";
         undoor = new Image("file:Images/unLocked.png");
         door = new Image(image);
@@ -48,6 +52,13 @@ public class Door extends Pane{
                     System.out.println("Hello");
                     doorView.setImage(undoor);
                     output.setText("Door Unlocked!");
+                    try{
+                        next = true;
+                        sleep(5000);
+                    }
+                    catch(Exception e){
+                        System.out.println("Nope");
+                    }
                 }
                 else{
                     output.setText("Door Locked");
@@ -62,6 +73,10 @@ public class Door extends Pane{
         return isLocked;
     }
 
+    public boolean nextRoom(){
+        return next;
+    }
+
     public void setLocked(boolean locked) {
         isLocked = locked;
         /*
@@ -73,6 +88,7 @@ public class Door extends Pane{
         }
          */
     }
+
 
     public void changeImage(String im) {
         Image temp = new Image(im);

@@ -3,10 +3,8 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -20,48 +18,59 @@ import javafx.scene.image.ImageView;
 
 public class GUI_EscapeRoom extends Application {
 
-    private Scene roomScene;
-    private Scene inventoryScene;
+    private Scene pz1Scene;
     private Scene overScene;
-    private Group root;
-    private Group root2;
-    private Group root3;
+    private Scene pz2Scene;
+    private Group pz1_root;
+    private Group pz2_root;
+    private Group invent_root;
     private VBox vbox;
     private Label output;
+    private VBox vbox1;
+    private Label output_med;
 
     private Inventory inventory;
     private Puzzle1 easy;
+    private Puzzle2 medium;
    // private NoButton no;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("EscapeRoom");
         output = new Label("Click On Something");
-        root = new Group();
-        root3 = new Group();
+        output_med = new Label("Click On Something");
+        pz1_root = new Group();
+        invent_root = new Group();
+        pz2_root = new Group();
         inventory = new Inventory(primaryStage);
-        easy = new Puzzle1(inventory, root, output);
+        easy = new Puzzle1(inventory, pz1_root, output);
+        medium = new Puzzle2(output_med);
 
 
 
-        roomScene = new Scene(root, 1000, 512,true);
+        pz1Scene = new Scene(pz1_root, 1000, 512,true);
+        pz2Scene = new Scene(pz2_root,1000,512, true);
 
 
-        overScene = new Scene(root3, 512,512,true);
+        overScene = new Scene(invent_root, 512,512,true);
 
         Image overImage = new Image("file:Images/game over.png");
         ImageView overView = new ImageView(overImage);
         overView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
         overView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-        root3.getChildren().add(overView);
+        invent_root.getChildren().add(overView);
 
 
-        root.getChildren().add(easy);
+        pz1_root.getChildren().add(easy);
 
+        pz2_root.getChildren().add(medium);
+        pz2_root.getChildren().add(medium.getUsa().getView());
+        pz2_root.getChildren().add(medium.getSafe().getSafeView());
+        pz2_root.getChildren().add(medium.getTable().getTableView());
 
-        root.getChildren().add(easy.getSafe().getSafeView());
-        root.getChildren().add(easy.getDoor().getDoorView());
-        root.getChildren().add(easy.getPaper().getPaperView());
+        pz1_root.getChildren().add(easy.getSafe().getSafeView());
+        pz1_root.getChildren().add(easy.getDoor().getDoorView());
+        pz1_root.getChildren().add(easy.getPaper().getPaperView());
 
         vbox = new VBox();
         vbox.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
@@ -72,9 +81,21 @@ public class GUI_EscapeRoom extends Application {
         output.setFont(thefont);
 
         vbox.getChildren().add(output);
-        root.getChildren().add(vbox);
+        pz1_root.getChildren().add(vbox);
 
-        primaryStage.setScene(roomScene);
+
+        vbox1 = new VBox();
+        vbox1.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
+        vbox1.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 50);
+
+        Font thefont1 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 15);
+        output_med.setTextFill(Color.RED);
+        output_med.setFont(thefont1);
+
+        vbox1.getChildren().add(output_med);
+        pz2_root.getChildren().add(vbox1);
+
+        primaryStage.setScene(pz2Scene);
 
         primaryStage.setMaximized(true);
         primaryStage.setFullScreen(true);
@@ -91,14 +112,32 @@ public class GUI_EscapeRoom extends Application {
             }
         });
 
+        medium.getYes().getImageYes().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                inventory.getStage().show();
+                inventory.getStage().setMaximized(true);
+                inventory.getStage().setFullScreen(true);
+
+            }
+        });
+
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if(easy.getGameTime().isGame_over()){
+                if(easy.getGameTime().isGame_over() || medium.getGameTime().isGame_over()){
                     primaryStage.setScene(overScene);
                     primaryStage.setMaximized(true);
                     primaryStage.setFullScreen(true);
+                    stop();
+                }
+                if(easy.getDoor().nextRoom()){
+                    primaryStage.setScene(pz2Scene);
+                    primaryStage.setMaximized(true);
+                    primaryStage.setFullScreen(true);
+                    inventory.removeItem(easy.getKey().getImageView());
+                    inventory.defaultCursor();
                     stop();
                 }
             }
@@ -107,12 +146,8 @@ public class GUI_EscapeRoom extends Application {
 
     }
 
-    public Scene getRoomScene(){
-        return roomScene;
-    }
-
-    public Scene getInventoryScene(){
-        return inventoryScene;
+    public Scene getPz1Scene(){
+        return pz1Scene;
     }
 
 
