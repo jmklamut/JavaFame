@@ -31,8 +31,16 @@ public class Popup {
 
     private static Label label1;
 
+    public Popup(){
+        label1.setText("Ah, greetings!\n You find yourself trapped within this confined room. "+
+                "\nHowever fear not, for your escape hinges on your wits. \n" +
+                "I am Frenchy, the enigmatic villain who \norchestrates this game. "+
+                "Can you rise to the challenge? \nThe room holds the answers you seek, \nbut time is of the essence. "+
+                "\n\nLet the pursuit of freedom commence!");
+    }
 
-    public static void display()
+
+    public static void display(int number)
     {
         Stage popupwindow = new Stage();
 
@@ -41,11 +49,18 @@ public class Popup {
 
 
         label1= new Label();
-        label1.setText("Ah, greetings!\n You find yourself trapped within this confined room. "+
-                "\nHowever fear not, for your escape hinges on your wits. \n" +
-                "I am Frenchy, the enigmatic villain who \norchestrates this game. "+
-                "Can you rise to the challenge? \nThe room holds the answers you seek, \nbut time is of the essence. "+
-                "\n\nLet the pursuit of freedom commence!");
+        switch (number){
+            case 1: label1.setText("Ah, greetings!\n You find yourself trapped within this confined room. "+
+                    "\nHowever fear not, for your escape hinges on your wits. \n" +
+                    "I am Frenchy, the enigmatic villain who \norchestrates this game. "+
+                    "Can you rise to the challenge? \nThe room holds the answers you seek, \nbut time is of the essence. "+
+                    "\n\nLet the pursuit of freedom commence!");
+            break;
+            case 2: label1.setText("Here is the riddle for the safe:\n  ");
+            break;
+            default:
+                System.out.println("Didn't work");
+        }
 
         Font thefont = Font.font("Comic Sans MS", 12);
         label1.setTextFill(Color.BLACK);
@@ -89,6 +104,4 @@ public class Popup {
         return label1;
     }
 
-    public static void changeMessage(){
-    }
 }

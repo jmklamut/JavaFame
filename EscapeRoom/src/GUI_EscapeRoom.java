@@ -71,6 +71,7 @@ public class GUI_EscapeRoom extends Application {
         pz1_root.getChildren().add(easy.getSafe().getSafeView());
         pz1_root.getChildren().add(easy.getDoor().getDoorView());
         pz1_root.getChildren().add(easy.getPaper().getPaperView());
+        pz1_root.getChildren().add(easy.getFlag().getView());
 
         vbox = new VBox();
         vbox.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
@@ -95,7 +96,7 @@ public class GUI_EscapeRoom extends Application {
         vbox1.getChildren().add(output_med);
         pz2_root.getChildren().add(vbox1);
 
-        primaryStage.setScene(pz2Scene);
+        primaryStage.setScene(pz1Scene);
 
         primaryStage.setMaximized(true);
         primaryStage.setFullScreen(true);

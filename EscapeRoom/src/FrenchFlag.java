@@ -29,7 +29,9 @@ public class FrenchFlag extends Pane {
         });
         getChildren().add(flag_view);
 
+    }
 
-
+    public ImageView getView() {
+        return flag_view;
     }
 }

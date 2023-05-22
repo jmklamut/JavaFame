@@ -51,13 +51,21 @@ public class Safe extends Pane {
                 StackPane pane_word = new StackPane();
                 pane_word.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
                 Canvas canvas = new Canvas(750,80);
+                Canvas replace = new Canvas(750,80);
+                replace.setLayoutX(100);
                 canvas.setLayoutX(100);
+                GraphicsContext re = replace.getGraphicsContext2D();
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setFill(Color.BLUE);
+                re.setFill(Color.BLUE);
                 Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 20);
                 gc.setFont(thefont);
                 gc.fillText("Enter the Key Code Here",75, 75);
                 gc.strokeText("Enter the Key Code Here", 75, 75);
+                Font refont = Font.font("Times New Roman", FontWeight.BOLD, 20);
+                re.setFont(refont);
+                re.fillText("Safe Unlocked! Check Inventory!",75, 75);
+                re.strokeText("Safe Unlocked! Check Inventory!", 75, 75);
                 TextField password = new TextField();
                 password.setPromptText("Enter Code Here");
                 pane_word.getChildren().addAll(password, canvas);
@@ -78,13 +86,16 @@ public class Safe extends Pane {
                                 changeLock(false);
                                 isLocked = false;
                                 output.setText("Safe has been unlocked!");
-                                gc.clearRect(0,0,750,80);
-                                gc.fillText("Safe Unlocked! Check Inventory!",75, 75);
-                                gc.strokeText("Safe Unlocked! Check Inventory!", 75, 75);
+                               // gc.clearRect(0,0,750,80);
+                               // gc.fillText("Safe Unlocked! Check Inventory!",75, 75);
+                               // gc.strokeText("Safe Unlocked! Check Inventory!", 75, 75);
                                 System.out.println("Safe Unlocked! Check Inventory!");
-                                sleep(3000);
+                                sleep(1000);
                                 pane_word.getChildren().remove(canvas);
                                 pane_word.getChildren().remove(password);
+                                pane_word.getChildren().add(replace);
+                                sleep(3000);
+                                pane_word.getChildren().remove(replace);
                             }
                             catch(Exception e){
                                 System.out.println("Don't work");

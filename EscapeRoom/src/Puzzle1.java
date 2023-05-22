@@ -94,6 +94,10 @@ public class Puzzle1 extends Room{
         return key;
     }
 
+    public FrenchFlag getFlag() {
+        return french;
+    }
+
     public Table getTable() {
         return table;
     }

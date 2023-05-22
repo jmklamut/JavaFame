@@ -30,25 +30,14 @@ public class Paper extends Pane {
         paper = new Image("file:Images/papers.png");
         paperView = new ImageView(paper);
         getChildren().add(paperView);
-        if(numb == 1) {
-            paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                 //   Popup.changeMessage();
-                    Popup.display();
-                }
-            });
-        }
-        else if(numb == 2){
-            paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                  //  PopUp2.display();
-                  //  PopUp2.changeText();
-                }
-            });
-        }
+        paperView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Popup.display(numb);
+            }
+        });
     }
+
 
     public void changeX(double x) {
         paperView.setX(x);
