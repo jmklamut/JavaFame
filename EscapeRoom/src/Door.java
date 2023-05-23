@@ -52,13 +52,7 @@ public class Door extends Pane{
                     System.out.println("Hello");
                     doorView.setImage(undoor);
                     output.setText("Door Unlocked!");
-                    try{
-                        next = true;
-                        sleep(5000);
-                    }
-                    catch(Exception e){
-                        System.out.println("Nope");
-                    }
+                    next = true;
                 }
                 else{
                     output.setText("Door Locked");

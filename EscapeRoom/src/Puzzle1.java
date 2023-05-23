@@ -23,7 +23,7 @@ public class Puzzle1 extends Room{
         french = new FrenchFlag(output);
         safe = new Safe(output);
         key = new Key();
-        safe.setSolution("1776");
+        safe.setSolution("17761789");
         paper = new Paper(1);
         paper2 = new Paper(2);
         paper.changeX(600);
@@ -31,6 +31,7 @@ public class Puzzle1 extends Room{
         paper2.changeX(250);
         paper2.changeY(700);
         table = new Table(output);
+
         getChildren().add(safe);
         getChildren().add(paper);
         getChildren().add(paper2);

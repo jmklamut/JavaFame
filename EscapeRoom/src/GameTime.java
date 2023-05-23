@@ -24,22 +24,23 @@ public class GameTime extends Pane{
         game_over = false;
         //display = new Label(seconds.toString());
         //System.out.println(display.getText());
-        canvas = new Canvas(150,150);
+        canvas = new Canvas(300,150);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.moveTo(0,0);
-        gc.setFill(Color.BLUE);
-        Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 20);
+        gc.setFill(Color.WHITE);
+        Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 30);
         gc.setFont(thefont);
-        gc.fillText("Time +"+seconds.toString(), 75, 75);
-        gc.strokeText("Time+" + seconds.toString(), 75, 75);
+        gc.fillText("Timer +"+seconds.toString(), 75, 75);
+        gc.strokeText("Timer+" + seconds.toString(), 75, 75);
 
 
         timerTask = new TimerTask() {
             @Override
             public void run() {
                 if(0 < seconds) {
-                    Platform.runLater(() ->gc.clearRect(0,0,150,150));
-                    Platform.runLater(() ->gc.fillText("Time:" + seconds.toString(), 75, 75));
+                    Platform.runLater(() ->gc.clearRect(0,0,300,150));
+                    Platform.runLater(() ->gc.fillText("Timer: " + seconds.toString(), 75, 75));
+
                     seconds--;
                 }
                 else{
@@ -64,6 +65,8 @@ public class GameTime extends Pane{
     public boolean isGame_over() {
         return game_over;
     }
+
+
 }
 
 

@@ -78,6 +78,10 @@ public class Room extends Pane{
         return image;
     }
 
+    public ImageView getBack(){
+        return backgroundView;
+    }
+
     public GameTime getGameTime(){
         return timer;
     }

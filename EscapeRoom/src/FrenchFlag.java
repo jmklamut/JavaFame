@@ -27,6 +27,7 @@ public class FrenchFlag extends Pane {
                 output.setText("Nothing in Flag");
             }
         });
+        flag_view.toBack();
         getChildren().add(flag_view);
 
     }

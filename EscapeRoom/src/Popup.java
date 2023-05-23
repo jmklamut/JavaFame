@@ -56,8 +56,14 @@ public class Popup {
                     "Can you rise to the challenge? \nThe room holds the answers you seek, \nbut time is of the essence. "+
                     "\n\nLet the pursuit of freedom commence!");
             break;
-            case 2: label1.setText("Here is the riddle for the safe:\n  ");
+            case 2: label1.setText("Safe Riddle:\n The combination is 8 numbers long. \n"+
+                    "There are two 7s, two 1s, one 6, and one 8.\n The first number is a 1 the last is a 9" +
+                    "\nHint: Dates of Freedom = Independence + Revolution");
             break;
+            case 3: label1.setText("You made it to Room 2!\n You really know your French/American History!\n" +
+                    "You'll find this room much harder\n" + "Don't forget your on the clock :-)");
+            break;
+            case 4: label1.setText("To find the first clue, hang the globe on the hook\n");
             default:
                 System.out.println("Didn't work");
         }
