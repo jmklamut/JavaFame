@@ -40,9 +40,9 @@ public class Door extends Pane{
         door = new Image(image);
         doorView = new ImageView(door);
         doorView.setX(400);
-        doorView.setY(480);
-        doorView.setScaleX(3.0);
-        doorView.setScaleY(3.0);
+        doorView.setY(445);
+        doorView.setScaleX(5.0);
+        doorView.setScaleY(5.0);
         getChildren().add(doorView);
 
         doorView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -51,7 +51,7 @@ public class Door extends Pane{
                 if(isLocked == false) {
                     System.out.println("Hello");
                     doorView.setImage(undoor);
-                    output.setText("Door Unlocked!");
+                    output.setText("Congrats! Going \ninto next room...");
                     next = true;
                 }
                 else{
@@ -69,6 +69,10 @@ public class Door extends Pane{
 
     public boolean nextRoom(){
         return next;
+    }
+
+    public void setRoom(boolean set){
+        next = set;
     }
 
     public void setLocked(boolean locked) {

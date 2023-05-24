@@ -9,19 +9,27 @@ public class USAFlag extends Pane {
 
     private Image usa_image;
     private ImageView usa_view;
+    private boolean action;
 
-    public USAFlag(Label output){
+    public USAFlag(Label output, boolean ham){
         usa_image = new Image("file:Images/usa_flag.jpg");
         usa_view = new ImageView(usa_image);
         usa_view.setScaleY(.7);
         usa_view.setScaleX(.7);
-        usa_view.setTranslateX(530);
+        usa_view.setTranslateX(700);
         usa_view.setTranslateY(150);
         usa_view.setStyle("-fx-background-color: transparent;");
         usa_view.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                output.setText("Nothing in Flag");
+                if(!ham) {
+                    output.setText("Nothing in Flag");
+                    action = false;
+                }
+                else{
+                    action = true;
+                }
+
             }
         });
         getChildren().add(usa_view);
@@ -33,5 +41,9 @@ public class USAFlag extends Pane {
     }
     public ImageView getView(){
         return usa_view;
+    }
+
+    public boolean getAction(){
+        return action;
     }
 }

@@ -11,8 +11,10 @@ public class FrenchFlag extends Pane {
 
     private Image flag_image;
     private ImageView flag_view;
+    private boolean action;
 
-    public FrenchFlag(Label output){
+    public FrenchFlag(Label output, boolean cross){
+        action = false;
         flag_image = new Image("file:Images/french_flag.jpg");
         flag_view = new ImageView(flag_image);
         flag_view.setScaleY(.4);
@@ -24,7 +26,13 @@ public class FrenchFlag extends Pane {
         flag_view.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                output.setText("Nothing in Flag");
+                if(!cross) {
+                    output.setText("Nothing in Flag");
+                    action = false;
+                }
+                else{
+                    action = true;
+                }
             }
         });
         flag_view.toBack();
@@ -34,5 +42,9 @@ public class FrenchFlag extends Pane {
 
     public ImageView getView() {
         return flag_view;
+    }
+
+    public boolean getAction(){
+        return action;
     }
 }

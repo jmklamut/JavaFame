@@ -91,11 +91,9 @@ public class Safe extends Pane {
                             });
                             pause1.play();
                             System.out.println("Your password is incorrect!");
-                            changeLock(true);
                             isLocked = true;
                     } else {
 
-                                changeLock(false);
                                 isLocked = false;
                                 output.setText("Safe has been unlocked!");
                                 gc.clearRect(0,0,750,80);

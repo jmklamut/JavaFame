@@ -97,8 +97,7 @@ public class Inventory {
         return inventory_stage;
     }
 
-
-
-
-
+    public void setWorked(boolean set){
+        worked = set;
+    }
 }

@@ -30,6 +30,7 @@ public class Popup {
 
 
     private static Label label1;
+    private static ImageView noteView;
 
     public Popup(){
         label1.setText("Ah, greetings!\n You find yourself trapped within this confined room. "+
@@ -61,9 +62,14 @@ public class Popup {
                     "\nHint: Dates of Freedom = Independence + Revolution");
             break;
             case 3: label1.setText("You made it to Room 2!\n You really know your French/American History!\n" +
-                    "You'll find this room much harder\n" + "Don't forget your on the clock :-)");
+                    "You'll find this room much harder\n" + "Don't forget you're on the clock :-)");
             break;
             case 4: label1.setText("To find the first clue, hang the globe on the hook\n");
+            break;
+            case 5: label1.setText("The safe password = \n FrenchAmerican");
+            break;
+            case 6: label1.setText("Congrats! \nYou made it to the last room!"+ "\n Find the hamburger and baguette!"+
+                    "\nHint: Try clicking the flags");
             default:
                 System.out.println("Didn't work");
         }
@@ -86,7 +92,7 @@ public class Popup {
         StackPane stack = new StackPane();
 
         Image note = new Image("file:Images/HandNote.png");
-        ImageView noteView = new ImageView(note);
+        noteView = new ImageView(note);
         noteView.setScaleX(.5);
         noteView.setScaleY(.5);
 
@@ -109,5 +115,10 @@ public class Popup {
     public Label getLabel(){
         return label1;
     }
+
+    public static ImageView getNoteView(){
+        return noteView;
+    }
+
 
 }

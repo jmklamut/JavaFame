@@ -30,6 +30,8 @@ public class Earth extends Pane {
 
     private Image earth_image;
     private ImageView earth_view;
+    private Image earth_bound;
+    private ImageView earth_bound_view;
     private double startX;
     private double startY;
     private double start_posy;
@@ -41,72 +43,18 @@ public class Earth extends Pane {
     public Earth(Stage layout, Hook hook, Label output){
         earth_image = new Image("file:Images/earth.png");
         earth_view = new ImageView(earth_image);
+        earth_bound = new Image("file:Images/earth_bounds.png");
+        earth_bound_view = new ImageView(earth_bound);
         collisoin = false;
         movement = true;
         earth_view.setTranslateX(1100);
         earth_view.setTranslateY(650);
+        earth_bound_view.setTranslateX(1125);
+        earth_bound_view.setTranslateY(675);
         System.out.println(earth_view.getTranslateY());
         getChildren().add(earth_view);
+        getChildren().add(earth_bound_view);
         earth_view.toFront();
-
-        Bounds bound = earth_view.getBoundsInParent();
-        Bounds newbounds = new Bounds(bound.getMinX()/2, bound.getMinY()/2,bound.getMinZ()/2,
-                bound.getWidth()/2, bound.getHeight()/2,bound.getDepth()/2) {
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Point2D point2D) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Point3D point3D) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(double v, double v1) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(double v, double v1, double v2) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Bounds bounds) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(double v, double v1, double v2, double v3) {
-                return false;
-            }
-
-            @Override
-            public boolean contains(double v, double v1, double v2, double v3, double v4, double v5) {
-                return false;
-            }
-
-            @Override
-            public boolean intersects(Bounds bounds) {
-                return false;
-            }
-
-            @Override
-            public boolean intersects(double v, double v1, double v2, double v3) {
-                return false;
-            }
-
-            @Override
-            public boolean intersects(double v, double v1, double v2, double v3, double v4, double v5) {
-                return false;
-            }
-        };
 
         vertical_speed = 0;
 
@@ -115,8 +63,7 @@ public class Earth extends Pane {
         earth_view.setOnMousePressed(e -> {
             if(movement){
                 startX = e.getSceneX() - earth_view.getTranslateX();
-                startY = e.getSceneY() - earth_view.getTranslateY();
-            }
+                startY = e.getSceneY() - earth_view.getTranslateY();                            }
         });
 
         earth_view.setOnMouseDragged(e -> {
@@ -125,12 +72,16 @@ public class Earth extends Pane {
                 earth_view.setTranslateY(e.getSceneY() - startY);
                 earth_view.setLayoutX(startX);
                 earth_view.setLayoutY(startY);
+                earth_bound_view.setTranslateX(earth_view.getTranslateX()+25);
+                earth_bound_view.setTranslateY(earth_view.getTranslateY()+25);
+                earth_bound_view.setLayoutX(startX);
+                earth_bound_view.setLayoutY(startY);
                 System.out.println("Rising: " + earth_view.getTranslateY());
                 vertical_position = earth_view.getTranslateY();
             }
-            if(earth_view.getBoundsInParent().intersects(hook.getHookView().getBoundsInParent())) {
+            if(earth_bound_view.getBoundsInParent().intersects(hook.getHookView().getBoundsInParent())) {
                 collisoin = true;
-                output.setText("Check Inventory");
+                output.setText("Click on Closet");
                 movement = false;
             }
         });
@@ -152,9 +103,12 @@ public class Earth extends Pane {
                     else if (start_posy > earth_view.getTranslateY()) {
                         System.out.println("Falling: " + earth_view.getTranslateY());
                         earth_view.setTranslateY(vertical_position);
+                        earth_bound_view.setTranslateY(vertical_position + 25);
+                        earth_bound_view.setTranslateX(earth_view.getTranslateX() + 25);
                     }
                     else{
                         earth_view.setTranslateY(650);
+                        earth_bound_view.setTranslateY(675);
                         vertical_speed = 0;
                         stop();
                     }

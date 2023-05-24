@@ -20,7 +20,7 @@ public class Puzzle1 extends Room{
 
     public Puzzle1(Inventory inventory, Group root, Label output) {
         super(output);
-        french = new FrenchFlag(output);
+        french = new FrenchFlag(output,false);
         safe = new Safe(output);
         key = new Key();
         safe.setSolution("17761789");
@@ -61,6 +61,7 @@ public class Puzzle1 extends Room{
                     System.out.println("It is in here");
                     root.setCursor(new ImageCursor(key.getImage()));
                     getDoor().setLocked(false);
+                    inventory.setWorked(false);
                     stop();
                 }
             }
