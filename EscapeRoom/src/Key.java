@@ -23,12 +23,21 @@ public class Key extends Pane {
 
     private Image keyImage;
     private ImageView keyView;
+    private boolean next;
 
     public Key(){
+        next = false;
         keyImage = new Image("file:Images/key.png");
         keyView = new ImageView(keyImage);
+        getChildren().add(keyView);
+
+        keyView.setOnMouseClicked(e -> {
+            getChildren().remove(keyView);
+            next = true;
+        });
 
     }
+
 
     public ImageView getImageView(){
         return keyView;
@@ -36,6 +45,10 @@ public class Key extends Pane {
 
     public Image getImage(){
         return keyImage;
+    }
+
+    public boolean getNext(){
+        return next;
     }
 
 }

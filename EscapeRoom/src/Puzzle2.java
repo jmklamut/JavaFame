@@ -82,9 +82,11 @@ public class Puzzle2 extends Room{
             public void handle(long l) {
                 worked = inventory.useItem(key.getImage(), key.getImageView());
                 if(worked){
+                    getChildren().remove(key.getImageView());
                     System.out.println("It is in here");
                     root.setCursor(new ImageCursor(key.getImage()));
                     getDoor().setLocked(false);
+                    inventory.setWorked(false);
                     stop();
                 }
             }

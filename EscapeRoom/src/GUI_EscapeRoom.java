@@ -70,7 +70,7 @@ public class GUI_EscapeRoom extends Application {
 
         easy = new Puzzle1(inventory, pz1_root, output);
         medium = new Puzzle2(inventory, pz2_root, output_med, primaryStage);
-        hard = new Puzzle3(inventory, output_hard);
+        hard = new Puzzle3(inventory, pz3_root, output_hard);
 
 
 
@@ -242,6 +242,19 @@ public class GUI_EscapeRoom extends Application {
             }
         };
         timer2.start();
+
+        AnimationTimer timer3 = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if(easy.getGameTime().isGame_over() || medium.getGameTime().isGame_over() || hard.getGameTime().isGame_over()){
+                    primaryStage.setScene(overScene);
+                    primaryStage.setMaximized(true);
+                    primaryStage.setFullScreen(true);
+                    stop();
+                }
+            }
+        };
+        timer3.start();
 
     }
 
