@@ -29,6 +29,7 @@ import static java.lang.Thread.sleep;
 public class Safe extends Pane {
 
     private boolean isLocked;
+    private boolean clicked;
     private String solution;
     private String image;
     private Image safe;
@@ -38,6 +39,7 @@ public class Safe extends Pane {
 
 
     public Safe(Label output) {
+        clicked = true;
         key = new Key();
         pane_word = new StackPane();
         isLocked = true;
@@ -51,53 +53,53 @@ public class Safe extends Pane {
         safeView.setScaleY(.2);
         safeView.setDisable(false);
         getChildren().add(safeView);
-        safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                pane_word.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-                Canvas canvas = new Canvas(750,80);
-                canvas.setLayoutX(100);
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                gc.setFill(Color.RED);
-                Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 20);
-                gc.setFont(thefont);
-                gc.fillText("Enter the Key Code Here",75, 75);
-                gc.strokeText("Enter the Key Code Here", 75, 75);
-                TextField password = new TextField();
-                password.setPromptText("Enter Code Here");
-                pane_word.getChildren().addAll(password, canvas);
-                pane_word.setLayoutX(300);
-                pane_word.setLayoutY(50);
-                //pane_word.setLayoutX(Screen.getPrimary().getVisualBounds().getWidth()/3);
-                //pane_word.setLayoutY(Screen.getPrimary().getVisualBounds().getHeight()/3);
-                pane_word.setStyle("-fx-background-color: grey;");
-                pane_word.toFront();
-
-                getChildren().add(pane_word);
-                password.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        if(!password.getText().equals(solution)) {
-                            gc.clearRect(0,0,750,80);
-                            gc.fillText("Your password is incorrect!",75, 75);
-                            gc.strokeText("Your password is incorrect!", 75, 75);
-                            PauseTransition pause1 = new PauseTransition(Duration.seconds(3));
-                            pause1.setOnFinished(eventPause -> {
-                                System.out.println("Waited");
-                                pane_word.getChildren().remove(canvas);
-                                pane_word.getChildren().remove(password);
-                                pane_word.setStyle("-fx-background-color: transparent;");
-                                getChildren().remove(pane_word);
-                            });
-                            pause1.play();
-                            System.out.println("Your password is incorrect!");
-                            isLocked = true;
-                    } else {
+            safeView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    output.setText("Please enter a code\n DONT PRESS SAFE");
+                    pane_word.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+                    Canvas canvas = new Canvas(750, 80);
+                    canvas.setLayoutX(100);
+                    GraphicsContext gc = canvas.getGraphicsContext2D();
+                    gc.setFill(Color.RED);
+                    Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 20);
+                    gc.setFont(thefont);
+                    gc.fillText("Enter the Key Code Here", 75, 75);
+                    gc.strokeText("Enter the Key Code Here", 75, 75);
+                    TextField password = new TextField();
+                    password.setPromptText("Enter Code Here");
+                    pane_word.getChildren().addAll(password, canvas);
+                    pane_word.setLayoutX(300);
+                    pane_word.setLayoutY(50);
+                    //pane_word.setLayoutX(Screen.getPrimary().getVisualBounds().getWidth()/3);
+                    //pane_word.setLayoutY(Screen.getPrimary().getVisualBounds().getHeight()/3);
+                    pane_word.setStyle("-fx-background-color: grey;");
+                    pane_word.toFront();
+                    getChildren().add(pane_word);
+                    password.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            if (!password.getText().equals(solution)) {
+                                gc.clearRect(0, 0, 750, 80);
+                                gc.fillText("Your password is incorrect!", 75, 75);
+                                gc.strokeText("Your password is incorrect!", 75, 75);
+                                PauseTransition pause1 = new PauseTransition(Duration.seconds(3));
+                                pause1.setOnFinished(eventPause -> {
+                                    System.out.println("Waited");
+                                    pane_word.getChildren().remove(canvas);
+                                    pane_word.getChildren().remove(password);
+                                    pane_word.setStyle("-fx-background-color: transparent;");
+                                    getChildren().remove(pane_word);
+                                });
+                                pause1.play();
+                                System.out.println("Your password is incorrect!");
+                                isLocked = true;
+                            } else {
 
                                 isLocked = false;
                                 output.setText("Safe has been unlocked!");
-                                gc.clearRect(0,0,750,80);
-                                gc.fillText("Safe Unlocked! Check Inventory!",75, 75);
+                                gc.clearRect(0, 0, 750, 80);
+                                gc.fillText("Safe Unlocked! Check Inventory!", 75, 75);
                                 gc.strokeText("Safe Unlocked! Check Inventory!", 75, 75);
                                 System.out.println("Safe Unlocked! Check Inventory!");
                                 PauseTransition pause = new PauseTransition(Duration.seconds(3));
@@ -110,21 +112,19 @@ public class Safe extends Pane {
                                 });
                                 pause.play();
 
-                              //  pane_word.getChildren().add(replace);
-                               // sleep(3000);
-                             //   pane_word.getChildren().remove(replace);
-                           // }
-                           // catch(Exception e){
-                            //    System.out.println("Don't work");
-                          //  }
-                    }
-                    password.clear();
-            }
-        });
-
-            }
-        });
-
+                                //  pane_word.getChildren().add(replace);
+                                // sleep(3000);
+                                //   pane_word.getChildren().remove(replace);
+                                // }
+                                // catch(Exception e){
+                                //    System.out.println("Don't work");
+                                //  }
+                            }
+                            password.clear();
+                        }
+                    });
+                }
+            });
     }
 
     public void setSolution(String ans) {

@@ -118,8 +118,8 @@ public class GUI_EscapeRoom extends Application {
         pz3_root.getChildren().add(hard);
 
         vbox = new VBox();
-        vbox.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
-        vbox.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
+        vbox.setTranslateX(1536 - 300);
+        vbox.setTranslateY(816 - 100);
 
         Font thefont = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output.setTextFill(Color.RED);
@@ -130,8 +130,8 @@ public class GUI_EscapeRoom extends Application {
 
 
         vbox1 = new VBox();
-        vbox1.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
-        vbox1.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
+        vbox1.setTranslateX(1536 - 300);
+        vbox1.setTranslateY(816 - 100);
 
         Font thefont1 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output_med.setTextFill(Color.RED);
@@ -142,8 +142,8 @@ public class GUI_EscapeRoom extends Application {
 
 
         vbox2 = new VBox();
-        vbox2.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
-        vbox2.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
+        vbox2.setTranslateX(1536 - 300);
+        vbox2.setTranslateY(816 - 100);
 
         Font thefont2 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output_hard.setTextFill(Color.RED);
@@ -305,6 +305,7 @@ public class GUI_EscapeRoom extends Application {
     public Scene getPz1_scene(){
         return pz1_scene;
     }
+
 
 
     public static void main(String[] args) {
