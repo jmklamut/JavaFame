@@ -32,6 +32,8 @@ public class Puzzle1 extends Room{
         paper2.changeY(700);
         table = new Table(output);
 
+        playmedia();
+
         getChildren().add(safe);
         getChildren().add(paper);
         getChildren().add(paper2);

@@ -2,7 +2,6 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -12,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -22,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.Collections;
 
 //At the time of turning this in I realized that most of this stuff is repetitive and unoptimized
@@ -30,15 +32,17 @@ import java.util.Collections;
 
 public class GUI_EscapeRoom extends Application {
 
-    private Scene pz1Scene;
-    private Scene overScene;
-    private Scene pz2Scene;
-    private Scene pz3Scene;
+    private Scene pz1_scene;
+    private Scene over_scene;
+    private Scene pz2_scene;
+    private Scene pz3_scene;
+    private Scene vic_scene;
 
     private Group pz1_root;
     private Group pz2_root;
     private Group pz3_root;
     private Group invent_root;
+    private Group vic_root;
 
     private VBox vbox;
     private VBox vbox1;
@@ -65,6 +69,7 @@ public class GUI_EscapeRoom extends Application {
         pz1_root = new Group();
         pz2_root = new Group();
         pz3_root = new Group();
+        vic_root =  new Group();
 
         inventory = new Inventory(primaryStage);
 
@@ -74,17 +79,25 @@ public class GUI_EscapeRoom extends Application {
 
 
 
-        pz1Scene = new Scene(pz1_root, 1000, 512,true);
-        pz2Scene = new Scene(pz2_root,1000,512, true);
-        pz3Scene = new Scene(pz3_root,1000,512, true);
+        pz1_scene = new Scene(pz1_root, 1000, 512,true);
+        pz2_scene = new Scene(pz2_root,1000,512, true);
+        pz3_scene = new Scene(pz3_root,1000,512, true);
 
-        overScene = new Scene(invent_root, 512,512,true);
+        over_scene = new Scene(invent_root, 512,512,true);
+
+        vic_scene = new Scene(vic_root, 512, 512, true);
 
         Image overImage = new Image("file:Images/game over.png");
         ImageView overView = new ImageView(overImage);
         overView.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
         overView.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         invent_root.getChildren().add(overView);
+
+        Image vic_image = new Image("file:Images/victory.png");
+        ImageView vic_view = new ImageView(vic_image);
+        vic_view.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        vic_view.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        vic_root.getChildren().add(vic_view);
 
 
 
@@ -105,10 +118,10 @@ public class GUI_EscapeRoom extends Application {
         pz3_root.getChildren().add(hard);
 
         vbox = new VBox();
-        vbox.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
-        vbox.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 50);
+        vbox.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
+        vbox.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
 
-        Font thefont = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 18);
+        Font thefont = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output.setTextFill(Color.RED);
         output.setFont(thefont);
 
@@ -117,10 +130,10 @@ public class GUI_EscapeRoom extends Application {
 
 
         vbox1 = new VBox();
-        vbox1.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
-        vbox1.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 50);
+        vbox1.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
+        vbox1.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
 
-        Font thefont1 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 18);
+        Font thefont1 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output_med.setTextFill(Color.RED);
         output_med.setFont(thefont1);
 
@@ -129,10 +142,10 @@ public class GUI_EscapeRoom extends Application {
 
 
         vbox2 = new VBox();
-        vbox2.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 200);
-        vbox2.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 50);
+        vbox2.setTranslateX(Screen.getPrimary().getVisualBounds().getWidth() - 300);
+        vbox2.setTranslateY(Screen.getPrimary().getVisualBounds().getHeight() - 100);
 
-        Font thefont2 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 18);
+        Font thefont2 = Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 22);
         output_hard.setTextFill(Color.RED);
         output_hard.setFont(thefont2);
 
@@ -140,7 +153,7 @@ public class GUI_EscapeRoom extends Application {
         pz3_root.getChildren().add(vbox2);
 
 
-        primaryStage.setScene(pz3Scene);
+        primaryStage.setScene(pz1_scene);
 
         primaryStage.setMaximized(true);
         primaryStage.setFullScreen(true);
@@ -189,7 +202,7 @@ public class GUI_EscapeRoom extends Application {
             @Override
             public void handle(long l) {
                 if(easy.getGameTime().isGame_over() || medium.getGameTime().isGame_over() || hard.getGameTime().isGame_over()){
-                    primaryStage.setScene(overScene);
+                    primaryStage.setScene(over_scene);
                     primaryStage.setMaximized(true);
                     primaryStage.setFullScreen(true);
                     stop();
@@ -197,7 +210,7 @@ public class GUI_EscapeRoom extends Application {
                 if(easy.getDoor().nextRoom()){
                     PauseTransition pause = new PauseTransition(Duration.seconds(5));
                     pause.setOnFinished(eventP -> {
-                        primaryStage.setScene(pz2Scene);
+                        primaryStage.setScene(pz2_scene);
                         primaryStage.setMaximized(true);
                         primaryStage.setFullScreen(true);
                         pz2_root.setCursor(Cursor.DEFAULT);
@@ -210,6 +223,11 @@ public class GUI_EscapeRoom extends Application {
                     output.setText("Congrats! Going \ninto next room...");
                     inventory.removeItem(easy.getKey().getImageView());
                     inventory.defaultCursor();
+
+                    String musicFile = "Sound/Solved.mp3";     // For example
+                    Media sound = new Media(new File(musicFile).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
                     stop();
                 }
             }
@@ -220,7 +238,7 @@ public class GUI_EscapeRoom extends Application {
             @Override
             public void handle(long l) {
                 if(easy.getGameTime().isGame_over() || medium.getGameTime().isGame_over() || hard.getGameTime().isGame_over()){
-                    primaryStage.setScene(overScene);
+                    primaryStage.setScene(over_scene);
                     primaryStage.setMaximized(true);
                     primaryStage.setFullScreen(true);
                     stop();
@@ -228,7 +246,7 @@ public class GUI_EscapeRoom extends Application {
                 if(medium.getDoor().nextRoom()){
                     PauseTransition pause = new PauseTransition(Duration.seconds(5));
                     pause.setOnFinished(eventP -> {
-                        primaryStage.setScene(pz3Scene);
+                        primaryStage.setScene(pz3_scene);
                         primaryStage.setMaximized(true);
                         primaryStage.setFullScreen(true);
                         inventory.removeItem(medium.getPaper3().getPaperView());
@@ -237,6 +255,11 @@ public class GUI_EscapeRoom extends Application {
                     output.setText("Congrats! Going \ninto next room...");
                     inventory.removeItem(medium.getKey().getImageView());
                     inventory.defaultCursor();
+
+                    String musicFile = "Sound/Solved.mp3";     // For example
+                    Media sound = new Media(new File(musicFile).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
                     stop();
                 }
             }
@@ -247,19 +270,40 @@ public class GUI_EscapeRoom extends Application {
             @Override
             public void handle(long l) {
                 if(easy.getGameTime().isGame_over() || medium.getGameTime().isGame_over() || hard.getGameTime().isGame_over()){
-                    primaryStage.setScene(overScene);
+                    primaryStage.setScene(over_scene);
                     primaryStage.setMaximized(true);
                     primaryStage.setFullScreen(true);
                     stop();
                 }
+                if(hard.getDoor().nextRoom()){
+                    PauseTransition pause = new PauseTransition(Duration.seconds(5));
+                    pause.setOnFinished(eventP -> {
+                        primaryStage.setScene(vic_scene);
+                        primaryStage.setMaximized(true);
+                        primaryStage.setFullScreen(true);
+
+                        String musicFile = "Sound/Hooray.mp3";     // For example
+                        Media sound = new Media(new File(musicFile).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                        mediaPlayer.play();
+
+                        inventory.removeItem(medium.getPaper3().getPaperView());
+                    });
+                    pause.play();
+                    output.setText("Congrats! Going \ninto next room...");
+                    inventory.removeItem(medium.getKey().getImageView());
+                    inventory.defaultCursor();
+                    stop();
+                }
+
             }
         };
         timer3.start();
 
     }
 
-    public Scene getPz1Scene(){
-        return pz1Scene;
+    public Scene getPz1_scene(){
+        return pz1_scene;
     }
 
 

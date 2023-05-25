@@ -3,7 +3,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
+import javafx.scene.media.*;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
@@ -37,14 +37,14 @@ public class Hamburger extends Pane {
             else if(in){
                 inventory.removeItem(ham_view);
                 food = true;
-                /*
-                String musicFile = "file:Sound/crunch.mp3";     // For example
+
+                String musicFile = "Sound/crunch1.mp3";     // For example
                 Media sound = new Media(new File(musicFile).toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);
                 mediaPlayer.play();
-                 */
-                AudioClip note = new AudioClip(this.getClass().getResource("crunch.wav").toString());
-                note.play();
+
+                //AudioClip note = new AudioClip(this.getClass().getResource("crunch.wav").toString());
+              //  note.play();
             }
             in = true;
         });

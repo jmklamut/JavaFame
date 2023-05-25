@@ -19,7 +19,7 @@ public class GameTime extends Pane{
     private boolean game_over;
 
     public GameTime(){
-        seconds = 100;
+        seconds = 240;
         countdown = new Timer();
         game_over = false;
         //display = new Label(seconds.toString());

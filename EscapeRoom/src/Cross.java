@@ -2,6 +2,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class Cross extends Pane {
 
@@ -32,6 +36,12 @@ public class Cross extends Pane {
             else if(in){
                 inventory.removeItem(cross_view);
                 food = true;
+
+                String musicFile = "Sound/crunch1.mp3";     // For example
+                Media sound = new Media(new File(musicFile).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                mediaPlayer.play();
+
             }
             in = true;
         });
