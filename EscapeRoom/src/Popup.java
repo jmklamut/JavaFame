@@ -69,7 +69,7 @@ public class Popup {
             case 5: label1.setText("The safe password = \n FrenchAmerican");
             break;
             case 6: label1.setText("Congrats! \nYou made it to the last room!"+ "\n Eat the hamburger and baguette,"+
-                   "\nthen open the chest!"+ "\nHint: Try clicking the flags");
+                   "\nthan open the chest!"+ "\nHint: Try clicking the flags");
             break;
             case 7: label1.setText("You collected a key! \nCheck Inventory");
             break;
