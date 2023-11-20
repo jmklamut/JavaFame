@@ -1,3 +1,3 @@
 # JavaFame
 
-For all the code/files/etc for creating our game as part of the Java Fame class
+For all the code/files/etc for the Escape Room Video Game
